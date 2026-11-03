@@ -1,0 +1,105 @@
+/*
+ *  Wave, containers provisioning service
+ *  Copyright (c) 2023-2024, Seqera Labs
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package io.seqera.wave.storage
+
+import java.time.Duration
+
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
+import io.micronaut.context.annotation.Value
+import io.seqera.wave.api.ContainerLayer
+import io.seqera.data.store.state.AbstractStateStore
+import io.seqera.data.store.state.impl.StateProvider
+import jakarta.inject.Singleton
+/**
+ * Implements manifest cache for {@link DigestStore}
+ *
+ * @author Paolo Di Tommaso <paolo.ditommaso@gmail.com>
+ */
+@Slf4j
+@Singleton
+@CompileStatic
+class ManifestCacheStore extends AbstractStateStore<DigestStore> implements Storage {
+
+    final private Duration duration
+
+    ManifestCacheStore(
+            StateProvider<String, String> provider,
+            @Value('${wave.storage.cache.duration:`1h`}') Duration duration)
+    {
+        super(provider, DigestStoreEncodeStrategy.create())
+        this.duration = duration
+        log.info "Creating Manifests cache store ― duration=$duration"
+    }
+
+    @Override
+    protected String getPrefix() {
+        return "wave-blobs/v1"
+    }
+
+    @Override
+    protected Duration getDuration() {
+        return duration
+    }
+
+    @Override
+    Optional<DigestStore> getManifest(String path) {
+        log.trace "Get manifest ==> $path"
+        final result = this.get(path)
+        result!=null ? Optional.of(result) : Optional.<DigestStore>empty()
+    }
+
+    @Override
+    DigestStore saveManifest(String path, String manifest, String type, String digest) {
+        log.trace "Save Manifest [size: ${manifest.size()}] ==> $path"
+        final bytes = manifest.getBytes()
+        final result = ZippedDigestStore.fromUncompressed(bytes, type, digest, bytes.length);
+        this.put(path, result)
+        return result;
+    }
+
+    DigestStore saveManifest(String path, DigestStore store) {
+        log.trace "Save Manifest [store] ==> $path"
+        this.put(path, store)
+        return store;
+    }
+
+    @Override
+    Optional<DigestStore> getBlob(String path) {
+        log.trace "Get Blob ==> $path"
+        final result = this.get(path)
+        result!=null ? Optional.of(result) : Optional.<DigestStore>empty()
+    }
+
+    @Override
+    DigestStore saveBlob(String path, byte[] content, String type, String digest) {
+        log.trace "Save Blob [size: ${content.size()}] ==> $path"
+        final result = ZippedDigestStore.fromUncompressed(content, type, digest, content.length)
+        this.put(path, result)
+        return result
+    }
+
+    @Override
+    DigestStore saveBlob(String path, ContainerLayer layer) {
+        log.trace "Save Blob ==> $path; layer=${layer}"
+        final store = DigestStoreFactory.of(layer)
+        this.put(path, store)
+        return store
+    }
+}

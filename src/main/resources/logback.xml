@@ -1,0 +1,55 @@
+<!--
+  ~  Wave, containers provisioning service
+  ~  Copyright (c) 2023-2024, Seqera Labs
+  ~
+  ~  This program is free software: you can redistribute it and/or modify
+  ~  it under the terms of the GNU Affero General Public License as published by
+  ~  the Free Software Foundation, either version 3 of the License, or
+  ~  (at your option) any later version.
+  ~
+  ~  This program is distributed in the hope that it will be useful,
+  ~  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~  GNU Affero General Public License for more details.
+  ~
+  ~  You should have received a copy of the GNU Affero General Public License
+  ~  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  -->
+
+<configuration>
+    <property name="WAVE_LOG_ROOT" value="${WAVE_LOG_ROOT:-.}" />
+    <property name="WAVE_LOG_NAME" value="${WAVE_LOG_NAME:-wave}" />
+    <property name="WAVE_LOG_PATTERN" value="${WAVE_LOG_PATTERN:-%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg >> wt=%X{requestId}%n}" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- ansi escape mess-up with non-ansi terminal and loggers -->
+        <withJansi>false</withJansi>
+        <encoder>
+            <pattern>${WAVE_LOG_PATTERN}</pattern>
+        </encoder>
+<!--        <filter class="io.seqera.wave.util.LoggerLevelFilter">-->
+<!--            <level>${WAVE_LOG_LEVEL:-INFO}</level>-->
+<!--            <onMatch>ACCEPT</onMatch>-->
+<!--            <onMismatch>DENY</onMismatch>-->
+<!--        </filter>-->
+    </appender>
+
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${WAVE_LOG_ROOT}/${WAVE_LOG_NAME}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${WAVE_LOG_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- keep 10 days' worth of history capped at 100MB total size -->
+            <maxHistory>10</maxHistory>
+            <totalSizeCap>200MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{MMM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ROLLING_FILE" />
+    </root>
+</configuration>

@@ -1,0 +1,125 @@
+/*
+ *  Wave, containers provisioning service
+ *  Copyright (c) 2023-2024, Seqera Labs
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package io.seqera.wave.http
+
+import java.net.http.HttpClient
+import java.time.Duration
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.locks.ReentrantLock
+
+import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
+import io.seqera.util.net.ProxyConfig
+import io.seqera.wave.util.CustomThreadFactory
+/**
+ * Java HttpClient factory
+ *
+ * @author Paolo Di Tommaso <paolo.ditommaso@gmail.com>
+ */
+@Slf4j
+@CompileStatic
+class HttpClientFactory {
+
+    static private ExecutorService threadPool = Executors.newCachedThreadPool(new CustomThreadFactory("HttpClientThread"))
+
+    static private Duration timeout = Duration.ofSeconds(20)
+
+    static private final ReentrantLock l1 = new ReentrantLock()
+
+    static private final ReentrantLock l2 = new ReentrantLock()
+
+    private static HttpClient client1
+
+    private static HttpClient client2
+
+    private static volatile ProxyConfig proxyConfig
+
+    /**
+     * Set the egress proxy applied to the clients created by this factory. Resolved once at
+     * bootstrap by {@link io.seqera.wave.configuration.HttpClientConfig}, before any client is built.
+     */
+    static void setProxyConfig(ProxyConfig config) {
+        proxyConfig = config
+    }
+
+    static HttpClient followRedirectsHttpClient() {
+        if( client1!=null )
+            return client1
+        l1.lock()
+        try {
+            if( client1!=null )
+                return client1
+            return client1=followRedirectsHttpClient0()
+        } finally {
+            l1.unlock()
+        }
+    }
+
+    static HttpClient neverRedirectsHttpClient() {
+        if( client2!=null )
+            return client2
+        l2.lock()
+        try {
+            if( client2!=null )
+                return client2
+            return client2=neverRedirectsHttpClient0()
+        } finally {
+            l2.unlock()
+        }
+    }
+
+    static HttpClient newHttpClient() {
+        return followRedirectsHttpClient()
+    }
+
+    static private HttpClient followRedirectsHttpClient0() {
+        final result = applyProxy(HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .followRedirects(HttpClient.Redirect.NORMAL)
+                .connectTimeout(timeout)
+                .executor(threadPool))
+                .build()
+        log.debug "Creating new followRedirectsHttpClient: $result"
+        return result
+    }
+
+    static private HttpClient neverRedirectsHttpClient0() {
+        final result = applyProxy(HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .followRedirects(HttpClient.Redirect.NEVER)
+                .connectTimeout(timeout)
+                .executor(threadPool))
+                .build()
+        log.debug "Creating new neverRedirectsHttpClient: $result"
+        return result
+    }
+
+    static private HttpClient.Builder applyProxy(HttpClient.Builder builder) {
+        final proxy = proxyConfig
+        if( proxy ) {
+            builder.proxy(proxy.toProxySelector())
+            final auth = proxy.toAuthenticator()
+            if( auth )
+                builder.authenticator(auth)
+        }
+        return builder
+    }
+
+}

@@ -1,0 +1,1762 @@
+# Wave changelog
+1.43.0 - 2 Nov 2026
+- SOCI v2 index for ephemeral, freeze and mirror containers (#1227) [40279dcc9]
+- Route blob locations of repositories with more than two path segments (#1240) [a7c66be18]
+- Update dependency io.micronaut.platform:micronaut-platform to v4.10.22 (#1228) [2db804920]
+- Update public.cr.seqera.io/seqeralabs/nf-jdk docker tag to v25.0.5 (#1231) [76a9db7c4]
+- Update gradle minor and patch (#1230) [804dec124]
+- Update github actions (#1229) [81817b93b]
+
+1.42.2 - 28 Oct 2026
+- Raise the Wave CI job timeout to 45 minutes [9574aa16a]
+- Bump condasplit to v3 [21fa507b0]
+- Update module github.com/moby/buildkit to v0.34.1 (#1213) [d608edcb1]
+- Request the minimal workflow record and stop renewing on any 4xx lookup reply (#1209) [5e016009c]
+- Stop copying the release image to the legacy ECR (#1216) [f1b42ed8d]
+- Use public.cr.seqera.io/seqeralabs/nf-jdk base image (#1207) [d4b9a35de]
+- Update nf-jdk base image digest to 15e35e9 (#1212) [67a0522e5]
+- Update gradle minor and patch (#1215) [396787ae9]
+
+1.42.1 - 20 Oct 2026
+- Publish work queue metrics for the job queues (#1203) [4001b8eae]
+- Pull nf-jdk base image from public.cr.seqera.io (#1200) [c162e2d00]
+
+1.42.0 - 20 Oct 2026
+- Move job queues to lib-data-workqueue, fix duplicate job processing and drain on shutdown (#1201) [60d327e19]
+- Update postgres docker tag to v16.15 (#1198) [7cf0fa273]
+- Update npm minor and patch (#1197) [1f5a2a871]
+- Update github actions (#1195) [5d57cc8a7]
+
+1.41.0 - 18 Oct 2026
+- Match registry credentials by repository path (#1165) [937c765e0]
+- Keep only the platform's Fusion snapshot layer in multi-arch images (#1191) [841582c0e]
+- Drop the other platform's layers from frozen multi-arch container files (#1193) [4dc0e98e6]
+- Disable SSRF protection by default (#1192) [8dea8f578]
+- Fix stray leading blank line in extracted conda lock file (#1082) [cfd7a5629]
+- Publish condasplit with the Wave release and check its default matches VERSION (#1188) [731e30b97]
+- Bump condasplit to v2 and check the VERSION bump on pull requests (#1187) [7fd08af18]
+- Override the vulnerable jackson on the Gradle plugins classpath (#1194) [2929baf00]
+
+1.40.4 - 15 Oct 2026
+- Re-release of 1.40.3: the 1.40.3 image was not published to the legacy ECR
+
+1.40.3 - 15 Oct 2026
+- Fix token watcher head-of-line blocking on slow Platform endpoints (#1181) [fa56deaf7]
+- Bump lib-pairing to 1.2.0 to close pairing sessions that stop sending heartbeats (#1184) [db02cdaf4]
+- Bump lib-cache-tiered-redis to 1.1.1 to coalesce concurrent cache misses (#1182) [bbbbc2beb]
+- Publish multi-arch Wave image on release and preview (#1180) [7fee8756b]
+- Bump condasplit frontend github.com/moby/go-archive to v0.3.0 [security] (#1177) [9645160de]
+
+1.40.2 - 12 Oct 2026
+- Bump buildkit to v0.33.1 (#1152) [bc7cb0a2e]
+
+1.40.1 - 12 Oct 2026
+- Bump Micronaut to 4.10.21 (#1171, #1176) [b964a699b, ced2ce56f]
+- Override vulnerable transitive JVM dependencies (#1175) [c8c71206e]
+- Bump logback to 1.5.34 (#1174) [46949fd60]
+- Bump nf-jdk base image to v25.0.4 (#1166) [91ce624b9]
+- Bump condasplit frontend Go dependencies to fix vulnerabilities (#1172) [018564437]
+- fix(deps): pin @typespec/openapi to 1.16.0 (#1173) [f6254fe43]
+
+1.40.0 - 5 Oct 2026
+- Add conda/pixi:v1-fast template with layered conda builds (#1153) [c260aff3a]
+
+1.39.0 - 2 Oct 2026
+- Add multi-architecture Singularity (SIF) build support (#1140) [0f9a23d93]
+- Add conda/micromamba:v2-fast template with layered conda builds (#1146, #1151) [5ffc92ca4, 2296d4ba7]
+- fix(deps): upgrade lib-pairing to 1.1.1 to accept large pairing messages (#1144) [0d74fc264]
+- fix(deps): upgrade typespec to 1.16.0 (COMP-2378) (#1143) [b8198f57b]
+- fix(deps): upgrade bouncycastle to 1.85 (COMP-2551) (#1141) [31dbcc5a4]
+- fix(deps): upgrade micronaut platform to 4.10.19 (COMP-2257) (#1142) [2878cf5f5]
+
+1.38.0 - 15 Sep 2026
+- Upgrade jib plugin to 3.5.4 for Java 25 class file support (#1136) [ad179698b]
+- Support an authenticating egress proxy via shared lib-util-net ProxyConfig (#1125) [a992c7003]
+- Fix PATH in Pixi Docker template for OCI-to-SIF converted images (#1131) [3a521bf4e]
+- fix: report K8s builds as succeeded on Kubernetes 1.36+ (COMP-2368) (#1128) [2fe030260]
+- fix: surface transfer errors when caching blobs (COMP-2142) (#1100) [bfaea6c0d]
+- fix(deps): upgrade io.netty:netty-bom to 4.2.17.Final (COMP-2376) (#1135) [6fc9e5029]
+- fix(deps): upgrade org.postgresql:postgresql to 42.7.12 (COMP-2149) (#1112) [b8ae1a76c]
+- build(java): align toolchain and runtime to Java 25 (bytecode 17) (#1077) [252916094]
+- ci(claude): let the review agent submit approving PR reviews (#1105) [fdde438d6]
+- docs: Refresh self install (#1106) [9fcd286c2]
+
+1.37.0 - 23 Jul 2026
+- feature: consolidate capability toggles under wave.capabilities.* (#1098) [ca2d0ede2]
+- fix: gate wave release on master and release-* branches DEVOPS-1531 (#1072) [794dcc0eb]
+- fix(deps): upgrade Micronaut to 4.10.17 to patch jackson-databind (COMP-1957) (#1091) [ceb77640f]
+- Bugfix: do not serve freeze/mirror images via the Wave proxy token path (#1087) [979fbd02e]
+- feature: disable the ability for wave to "pull" images directly (#1089) [e8b52817e]
+- Quieten expected Platform-connectivity errors in the token watcher (#1085) [a4c6176df]
+- docs: document workflow-bound ephemeral token lifecycle (#1084) [1bfc55c30]
+
+1.36.0 - 15 Jul 2026
+- Progressive container expiration extension (#782) [a4517091a]
+- Reduce response contents to remove unneeded fields (#1073) [0718f702a]
+- chore: pin postgres containers + bump test containers (#1080) [4e5cfe271]
+
+1.35.1 - 13 Jul 2026
+- fix: make `which` available for R (bioconda) post-links in conda v2 builds (#1070) [417e43a72]
+
+1.35.0 - 1 Jul 2026
+- fix: use micromamba 2 image for conda/micromamba:v2 builds (#1065) [ddd1e8d10]
+- feat: add waveBuildNotification user preference for build email notifications (#1069) [b7822a098]
+- Use lib-util-net for SSRF host validation (#1061) [783ee2735]
+
+1.34.0 - 15 Jun 2026
+- Rename WAVE_LOG_STDOUT_PATTERN env var to WAVE_LOG_PATTERN [ff23adc78]
+- fix(deps): define netty version in gradle.properties and bump to 4.2.15.Final [5cd415188]
+- Use micromamba/v2 as default build template for conda packages (#1024) [584dd702e]
+- feat(ci): use OIDC role for maven publish DEVOPS-1455 (#1059) [75576fdf2]
+- fix(deps): upgrade io.netty:netty-bom to 4.2.13.Final (COMP-1718) (#1053) [1b4ecad54]
+- chore(ci): remove legacy wave/app ECR push DEVOPS-1453 (#1057) [6bf2b5673]
+- chore(ci): remove git tag --force from Wave release CI DEVOPS-1454 (#1056) [225a1b7d4]
+- Make STDOUT log pattern configurable via WAVE_LOG_STDOUT_PATTERN (#1055) [15ab7552d]
+- fix: port wave CI release flow with non-enterprise jibRepo fix SEC-1395 (#1046) [1a570db65]
+- feat: Make server listening port configurable via WAVE_SERVER_PORT mn env var (#1029)
+
+1.33.6 - 21 May 2026
+- Demote 'Request processing' log to trace in RegistryProxyService (#1047) [3881377c0]
+
+1.33.5 - 17 May 2026
+- Use addIfLess for JWT refresh timer scheduling (#1045) [e80058ca4]
+- Embed OpenAPI spec and Swagger UI in main Wave container (#1043) [b9c0daf91]
+- Bump pgjdbc to 42.7.11 and Bouncy Castle to 1.84 to patch CVEs [83ffa4ea5]
+- Gate CI release steps on first-line `[release]` and exclude PR merges [ff8c7af80]
+- Update dependency node to v24 (#1023) [00231d138]
+- Port wave CI to push to internal ECR SEC-1395 (#1039) [9df3340a8]
+
+1.33.4 - 8 May 2026
+- Truncate verbose DEBUG log payloads to reduce heap pressure (#1041) [ac708f08a]
+- Minor compiler syntax fix [214266462]
+
+1.33.3 - 28 Apr 2026
+- Revert Gradle build files and dependencies to v1.33.0 [087a85935]
+- Add lib-util-time dependency [d894f5ca9]
+- Add micromamba clean to v2 templates to reduce image size (#1038) [6d57360a6]
+- Fix pixi Singularity template PATH environment (#1036) [a199953e5]
+- Update third-party dependency versions to latest stable (#1037) [03cc67e4c]
+- Minor clarity suggestions (#1034) [c862ee670]
+- Reduce wave resource requirements in installation manifests (#1028) [a2f670990]
+- Refine Docker Compose setup for Wave Lite (#1033) [00a7c8537]
+- Add BuildEnabled in MultiPlatformBuildService (#1030) [88bff95aa]
+- Add missing configuration documentation (#1025) [ec29df888]
+
+1.33.2 - 15 Apr 2026
+- Fix conda builds for packages requiring __cuda virtual package (#1027) [67542ce25]
+- Fix build error with --build-template conda/micromamba:v2 for singularity (#972) [17273e544]
+- Upgrade third-party dependencies to latest stable versions (#998) [3396554d0]
+- Pin dependencies (#1012) [7e1a05ee4]
+
+1.33.1 - 30 Mar 2026
+- Update token cache duration and clarify public-repo docs (#1007) [2e47f9bd5]
+- Bump Netty to 4.2.10.Final and Micronaut to 4.10.10 (#1001) [970ec3876]
+- Refactor build vs cache IAM permission structure (#999) [2241a129f]
+- Migrate dependencies to Gradle version catalog (#996) [ac0664ce2]
+- Updated copyright to 2026 (#1003) [ba1209d0b]
+
+1.33.0 - 13 Mar 2026
+- Support cross AWS account IAM role authentication (#979) [d59370c20]
+- Add multi-platform container builds for amd64 and arm64 (#985) [5a90dc5bc]
+- Added SSRF protection to the validate-creds API (#962) [b5969fa94]
+- Add explicit type casts for ECR auth token requests (#992) [9b647a5a6]
+- Externalize lib-pairing module to libseqera (#958) [1b57e6817]
+- Fix error messages (#957) [e664b548f]
+- Bump s5cmd 2.3.0 [193a30dac]
+
+1.32.6 - 6 Mar 2026
+- Fixed inspect view (#988) [dc47180c5]
+- Added max-width and height in build-notification.html (#987) [ae6162699]
+- Fix no user in docker container when using build template condapixiv1 (#974) [c2042fa58]
+- Remove all SurrealDB references (#986) [860d2a191]
+- Simplify inspect.js code (#990) [065c2771a]
+
+1.32.5 - 3 Mar 2026
+- Updated wave logo and icon (#984) [ba9972fe3]
+- Updated seqera logo in wave reports and mail (#981) [7303e10ea]
+
+1.32.4 - 25 Feb 2026
+- Revert Micronaut to 4.9.4 to mitigate memory leak [c6141213] - https://github.com/netty/netty/issues/16049
+- Add HttpClientAddressResolver in RateLimiterFilter (#966) [2d2b63d2f]
+- Fix configuration reference discrepancies (#976) [b36a083ad]
+
+1.32.3 - 10 Feb 2026
+- Close pairing session on heartbeat when record is missing from Redis (#977) [779c14379]
+- Bump libseqera dependencies (#978) [fb2e98111]
+
+1.32.2 - 26 Jan 2026
+- Fix copy and download button in wave reports (#969) [22601f1d6]
+- Remove GitHub Action for generating Seqera Docs changelog (#965) [04492ded7]
+- Use lib-data-range-redis from libseqera (#964) [448edc1ee]
+
+1.32.1 - 14 Jan 2026
+- Fix noarch node selector validation in K8sServiceImpl (#963) [cd21beec2]
+- Add complete tests for CranOpts custom commands (#960) [913f7506d]
+
+1.32.0 - 12 Jan 2026
+- Upgrade to Micronaut 4.10.6 (#951) [6dda24c2b]
+- Use noarch node selector for mirror and transfer jobs (#953) [54f985174]
+- Replace RedisFactory with JedisPoolFactory from lib-jedis-pool [c8040227b]
+- Add missing HTTP Security Header (#955) [c48b8511c]
+
+1.31.2 - 17 Dec 2025
+- Add JavaDocs to PixiOpts and update tests for new default pixi image (#950) [7f49bb8b4]
+- docs: Style template build content (#948) [aa40d5513]
+- docs: Add guide for bin scripts (#933) [21e78e115]
+
+1.31.1 - 10 Dec 2025
+- Add DockerHelper to wave-utils for Nextflow integration (#947) [cb48de01b]
+
+1.31.0 - 10 Dec 2025
+- Add support for build templates (and pixi) (#839) [21e9e425a]
+- docs: Add Wave api rate limit guide (#914) [aa347fdc3]
+- Add error warning (#943) [f56ae8e77]
+- docs: Apply new language to align with new reference style guide (#940) [df42fa059]
+- docs: Rename page title to match sidebar (#941) [799a3a3cc]
+- Update libseqera dependencies to latest versions (#939) [cb7bb5580]
+
+1.30.0 - 27 Nov 2025
+- Add labels in ConfigSpec (#934) [67ac6c3dc]
+- Use Seqera-hosted buildkit image (#938) [c0c0b6465]
+- Add configurable singularity init container image (#937) [5c0fd3fce]
+- Fix YAML indentation in configure-wave.md (#936) [c09eba7ca]
+- Fix scan and mirror enabled flag bug (#935) [dc23d7bbe]
+- docs: Fix typos in Wave Kubernetes install (#930) [d3478f336]
+
+1.29.1 - 19 Nov 2025
+- Fix scan requirement on createScanStorageOpts [33463ebd2]
+- Add node selectors in scan, mirror and transfer jobs (#905) [47a7c5ac4]
+
+1.29.0 - 13 Nov 2024
+- Add S3 cache support for BuildKit (#927) [8dac665a0]
+- Update buildkit to 0.25.2 (#928) [68a6a2e4a]
+- Add docs for CRAN package support (#925) [482fc1d3c]
+- Fix product name capitalization in documentation (#883) [f03025535]
+- Update local dev config [059b2e4e]
+
+1.28.0 - 4 Nov 2024
+- Add CRAN package support for Wave container builds (#874) [81b4e6681]
+
+1.27.0 - 4 Nov 2024
+- Refactor state store to external library lib-data-store-state-redis [9b3fc3095]
+- Refactor future store to external library lib-data-store-future-redis [9b3fc3095]
+- Upgrade lib-data-queue-redis to version 1.1.1 [9b3fc3095]
+- Upgrade lib-data-stream-redis to version 1.1.2 [9b3fc3095]
+- Extract distributed state management to reusable library [9b3fc3095]
+- Extract distributed future handling to reusable library [9b3fc3095]
+
+1.26.1 - 23 Oct 2025
+- Refactor MoshiEncodeStrategy to remove Wave-specific polymorphic type adapters (#922) [abc71280d]
+- Bump lib-retry version 2.0.0 [63edabf95]
+- docs: Fix error in docs last_update (#921) [650c39415]
+- Upgrade Netty to 4.2.5.Final to fix CVE-2025-58057 (#920) [485ce7cd9]
+- docs: Update Wave use cases and FAQ (#917) [1b137e4ce]
+
+1.26.0 - 16 Oct 2025
+- Add security scanning for Nextflow plugins in OCI registries (#912) [5acca4367]
+- Bump Micronaut to version 4.9.4 [b056aff91]
+- docs: Replace cards that loose formatting in production (#913) [c6155c9dc]
+- docs: Style Wave db migration page (#915) [5af1639b0]
+- docs: Remove Wave metrics page (#909) [95e1cc32b]
+
+1.25.2 - 25 Sep 2025
+- Add CLAUDE.md documentation file [573c06ae]
+- Bump corretto-25-al2023-jemalloc as base image [715c594a]
+- Add Claude PR Assistant workflow [94f9f443]
+- Add ARM64 platform support to container build (#911) [12dd4978]
+
+1.25.1 - 22 Sep 2025
+- Fix links broken by renaming page (#892) [db0cacd9]
+- Remove unused env from jib task def [34718247]
+- Replace deprecated AppArmor annotation with securityContext field (#896) [e474e5c7]
+- Wv 217 remove app encoded values for seqera environment (#893) [e4eec429]
+- Bump buildkit to 0.23.2 in tests (#894) [fc24a4a0]
+- Bump MN version 4.9.3 [03b98e8d]
+- Bump buildkit version 0.23.2 [f31316d9]
+- Bump corretto-25-al2023-mimalloc as base image [46a6e2a9]
+
+1.25.0 - 1 Sep 2025
+- Fix Netty direct memory OOM after Micronaut 4.9.2 upgrade (#889) [d16ab5dd]
+- Support csi s3 driver in wave  (#875) [a425ddc5]
+- fixed build view (#879) [3c8d7ae4]
+- Bump security updates [e12b00af]
+
+1.24.0 - 12 Aug 2025
+- Add support for container SBOM report (#841) [919a4016]
+- Fix views (#877) [88db93f5]
+- Fix build view (#876) [3a6aa92e]
+- Bump trivy to version 0.65.0 [ad14e0f2]
+
+1.23.1 - 7 Aug 2025
+- Revert to MN 4.8.3 [b7ee0214]
+- Improve view titles [a59b623b]
+- Fix minor container view glitch [a745979e]
+
+1.23.0 - 7 Aug 2025
+- Redesign Wave reports (#871) [edae3c5f]
+- Add default jvm config (#864) [b7222304]
+- Fix potential deadlock in DockerJobOperation process handling [ecff3a5e]
+
+1.22.1 - 5 Aug 2025
+- Add lib-lang to import TypeHelper [9372f865]
+- Add lib-retry [8d4277ba]
+- Fix type casting [fac0623d]
+- Integrate Redis activator pattern for conditional component activation (#872) [71724421]
+- Refactor message queue and stream infrastructure (#870) [a8727181]
+- Remove unused fallback flag [1da3ebee]
+- Bump MN 4.9.1 [e83d3bb9]
+- Bump MN 4.9.2 [0adeb552]
+- Bump foojay-resolver-convention to version 1.0.0 [c705a2cf]
+- Bump k8s java client to 24.0.0 (#866) [f2be4b88]
+
+1.22.0 - 17 Jun 2025
+- Add lite configuration environment (#818) [4a4b09d8]
+- Add migration docs and update config docs (#854) [600426ab]
+- Fix azure tests [69062b26]
+- Patch openapi image version [3e729804]
+- Remove unwanted imports (#856) [07086eb0]
+- Bump Gradle version 8.14.2 [afc4f333]
+- Bump Micronaut 4.8.3 [8aeffc8b]
+- Bump lib-mail version 1.2.2 [4f8afe1a]
+- Bump postgresql version 42.7.7 [7fa95857]
+
+1.21.1 - 29 May 2025 
+- Fix Conda lock fallback logic [657316e8]
+
+1.21.0 - 28 May 2025
+- Add Conda locks fallback patch [9b54bba3]
+- Add Surreal to PostgreSQL data migration (#833) [89acf316] [c23fccf2] [8d0a6861]
+- Add support for local file system for logs assets (#808) [ec9aa319] [BREAKING]
+- Fix containerId when using freeze mode and providing custom config (#830) [ccfc943e]
+- Improve parsing of container platform (#810) [aa90f38c]
+- Update singularity build (#837) [415bf745]
+- Bump buildkit:v0.21.1 [b234b8bb]
+
+1.20.3 - 24 May 2025 
+- Determine job state by using K8s JobStatus [ecc33c37]
+
+1.20.2 - 21 May 2025
+- Fix K8s failure detection on pod error [1c76cd96]
+
+1.20.1 - 20 May 2025
+- Bump Jib to version 3.4.5
+
+1.20.0 - [skipped]
+- Add PostgreSQL based implementation for PersistenceService (#821) [2c5b25f0]
+- Add k8s tracing info [69769b13]
+- Add log trace to postgres service [6e939580]
+- Add pod failure policy [2ce4a998]
+- Add progress async impl [de5f7237]
+- Add support for compression settings (#822) [72566c0d]
+- Improve docker debug command [0a59ec26]
+- Promote job queues config logs to info [d8e3d9f0]
+- Remove unused h2 env [e4422b1e]
+- added jdbc binder for prometheus metrics (#840) [7094a366]
+
+1.19.7 - 6 May 2025 
+- Add K8s trace logs for troubleshooting
+
+1.19.6 - 30 Apr 2025
+- Bypass cache repo for custom build repos  (#828) [29a93053]
+
+1.19.5 - 17 Apr 2025
+- Add multi arch singularity image (#826) [cf4f97ff]
+- Add proot and init container to singularity build (#825) [6d995d4c]
+- Add compress options to image output [c25496b5]
+- Bump Micronaut to version 4.8.0 [6e4b6031]
+- Bump Netty to version 4.1.119 [f2147953]
+- Bump Gradle 8.13 [8bdd2adc]
+
+1.19.4 - 31 Mar 2025 
+- Add enable-native-access=ALL-UNNAMED to launch opts [4f0525da]
+- Default request containerPlatform to linux/adm64 [dcdb7cf4]
+- Fix NPE accessing job manager config (#812) [da8d101e]
+- Normalize arch argument to platform [f2a3db7b]
+- Remove unused platform variable [77bbb416]
+- Revert use of async Caffeine cache (#811) [95fb3204]
+- Use uniform notation for resources requests & limits (#819) [8bfa1126]
+- Bump nf-jdk:corretto-24-al2023-jemalloc [bcb14150]
+
+1.19.3 - 26 Mar 2025
+- Added dns configuration in k8s job (#816) [0458e667]
+- Add support for cpu and mem limits (#817) [eb0fa3fe]
+- Add limits for scan, mirror and transfer [9b9bc5f2]
+
+1.19.2 - 15 Mar 2025
+- Implement pending queue as stream (#809) [ec847d24]
+- Restore "Add arch in wave metrics (#791)" [a8e84291]
+
+1.19.1 - 13 Mar 2025
+- Revert "Add arch in wave metrics (#791)" [0fd2eefa]
+
+1.19.0 - 10 Mar 2025
+- Add arch in wave metrics (#791) [f03a1f1f]
+- Add submission queue to Job manager (#805) [3b71558e]
+- Improve Redis tests [6e90f71c]
+- Improve thread interruption logic [0e70924c]
+- Improve debug logging [5d5980b1]
+- Fix robots file for crawlers [1cf23c9c]
+
+1.18.4 - 3 Mar 2025
+- Add robots and favicon files [40c91f5f]
+- Improve errors and warns logging [216b8227]
+
+1.18.3 - 28 Feb 2025
+- Add DenyCrawlerFilter (#803) [edfae007]
+
+1.18.2 - 27 Feb 2025
+- Use post for container scan (#802) [1d4bc194]
+- Wv 102 merge https docs.seqera.io wave api into openapi (#800) [206881ec]
+
+1.18.1 - 21 Feb 2025
+- Add denyHosts to pairing websocket [f5369eed]
+- Use virtual threads for build, scan and mirror jobs (#742) [9dfce1f7]
+- removed metrics from open-api (#798) [740831aa]
+- Bump ch.qos.logback:logback-classic 1.5.16 (#799) [7bf703d6]
+
+1.18.0 - 18 Feb 2025
+- Add Scan image request (#796) [a950d1cf]
+- Improve caching for AWS ECR and Auth lookup (#783) [b1a76d15]
+- Improve jwt debug logs [086837e9]
+- Use route target path as proxy cache key (#788) [1133c348]
+- Bump Micronaut to version 4.7.6 [97544609]
+- Bump io.netty:netty-bom:4.1.118.Final [5a861f51]
+
+1.17.2 - 10 Feb 2025
+- Change threads dump-threshold default to 200 [5d136e45]
+- Minor inspect view improvements (#795) [242822fd]
+- Bump gradle 8.12.1 [6b85565e]
+- Bump MN version 4.7.5 [03febd69]
+
+1.17.1 - 4 Feb 2025
+- Add container index support to inspect view (#792) [34428d25]
+- Remove server from openapi spec (#793) [9cbdec1d]
+
+1.17.0 - 30 Jan 2025
+- Ignore URI dependencies in Conda envs when generating image hash (#786) [c097c8a2]
+- Render html from openapi spec generated by typespec (#707) [d3dfee9a]
+- Disable proxy cache by default [c91fc31f]
+- Update gradle deps [8a2e4209]
+- Bump buildkit to version 0.18.2 (#787) [facbf99c]
+- Bump java settings [1f6b94da]
+
+1.16.8 - 20 Jab 2025
+- Add TraceContextFilter logging context propagation [396c10c2]
+- Improve Proxy cache configuration [163e605f]
+- Improve logging pattern [0ab87164]
+- Improve request caching logic [a95153be]
+- Bump MN 4.7.4 [4ce2a139]
+
+1.16.7 - 10 Jan 2025
+- Improve logging on pairing websocket error [21861dbe]
+
+1.16.6 - 7 Jan 2025 
+- Fix Use caffeine for tiered cache lock cache (#785) [bb5f4dd0]
+- Tune trace timeouts [d6bf2236]
+
+1.16.5 - 30 Dec 2024
+- Fix Missing legacy classes deserialization [7687cd24]
+
+1.16.4 - 30 Dec 2024
+- Add custom toString method DelegateResponse class [6feb386a]
+- Add isTraceEnable if guard to log traces [166ca37f]
+- Add trace execution elapsed time logic (#497) [9e25687f]
+- Fix duplicate add-opens option in launch script [a2722115]
+- Fix invalid expiresAt time in L1 tiered cache [38737127]
+- Fix missing workspaceId in launch API (#780) [c0d41336]
+- Use look pool for cache sync [29db0360]
+- Use blocking executor with PullMetricsRequestsFilter class [e10f3275]
+- Use lib-pool library [33d9d4d3]
+- Use platform thread to read target request body [053ba8d9]
+- Refactor container request service [955d9894]
+- Refactor platform client model [8c7a9825]
+- Remove unneeded user async api (#781) [814c35ee]
+- Bump MN 4.7.2 [702658b2]
+
+1.16.3 - 22 Dec 2024
+- Improve tiered cache (#779) [01d5f183]
+- Bump logback 1.5.13 [1466c276]
+
+1.16.2 - 20 Dec 2024
+- Fix JWT token refresh [52a5ebd7]
+
+1.16.1 - 20 Dec 2024
+- Add tiered cache for HTTP proxied responses (#778) [00b6add7]
+- Improve bootstrap info [d5c086da]
+- Remove jitpack [67f91c8b]
+
+1.16.0 - 17 Dec 2024 
+- Add support for mills resolution future store [252e0985]
+- Fix Condalock fetching for cached build layers (#727) [13a59373]
+- Fix NPE while creating PairingOutboundQueue (#770) [215f6da8]
+- Improve Tower client caching via Tiered cache (#772) [f0ca0f62]
+- Improve logging for connect response events [f94eb6fa]
+- Improving pairing tracing [b743c136]
+- Replace volatile with final (#771) [df2ddb96]
+- Strengthen conda naming strategy [d72b69c3]
+- User email as rate limiter key [eddc9ee9]
+
+1.15.5 - 9 Dec 2024 
+- Add Jedis pool metrics binder (#756) [a6b2833d]
+- Add jul-to-slf4j dependency [2874187b]
+- Add slf4j backend for Java sys logger [ec5c67fe]
+- Add support for common pool and virtual threads pool metrics (#762) [8aa9075c]
+- Add GH Workflow to sync changelog with Seqera docs (#761) [c8bb7b03]
+- Fix handling error for known http statuses [513a1ef2]
+- Improve container validation [1c36fd4c]
+- Remove unused stream-executor [61357048]
+- Suppress Caffeine log warnings [2fd351d3]
+- Tune Tower connector delay and retry [3fd5643f]
+- Unwrap Failsafe target exception [6fb214a4]
+
+1.15.4 - 27 Nov 2024 
+- Add blocking executor to async caches (#759) [86f7d3e3]
+- Add ExecutesOn annotation to error controller [a2db2b00]
+
+1.15.3 - 25 Nov 2024
+- Add Support Redis support for SSL and password (#717) [bf63599d]
+- Bump MN 4.7.1 (#741) [203e5dd0]
+- Remove double cache builder invocation [994b722c]
+- Bump lib-mail version 1.2.1 [4da98a23]
+- Bump io.seqera:lib-crypto [36f5b24d]
+- Bump gson 2.10.1 [117703b9]
+- Bump protobuf-java version 4.27.5 [3ea758b4]
+- Bump k8s client to version 21.0.1 (#553) [51788578]
+
+1.15.2 [skipped] 
+
+1.15.1 - 20 Nov 2024
+- Check block existence with object operation (#750) [86ef526c]
+- Add /v1alpha2/validate-creds (#752) [e24ec62c]
+- Switched env vars around (#748) [080d5cce]
+
+1.15.0 - 18 Nov 2024
+- Migration to virtual threads - phase 1 (#746) [aaf0420c]
+- Use runAsync instead supplyAsync [ffd0dacd]
+- Remove deprecated ThreadPoolBuilder [7af3046f]
+- Replace Guava cache with Caffeine (#745) [cf813e0a]
+- Update project deps [f24b684d]
+- Bump  guava to version 33.3.1-jre [328e9ea3]
+- Bump Netty version 4.1.115.Final [9ba433ce]
+- Bump gradle 8.10.2 [52272fe1]
+
+1.14.1 - 14 Nov 2024
+- Fix creds validation endpoint (#740) [8c0f3a4c]
+
+1.14.0 - 10 Nov 2024
+- Fix K8s env propagation [76f0a456]
+- Remove deprecated K8s methods (#734) [481298bf]
+- Bump to Micronaut 4.6 (#318) [f67e8556]
+- Bump Java 21 as build requirement (#519) [132f9491]
+- Bump bitbucket.b_c:jose4j:0.9.4 [2e10416a]
+- Bump bouncycastle:bcpkix-jdk18on:1.78 [ede22ce5]
+- Bump jedis 5.1.3 (#732) [2ee0854e]
+- Bump logback 1.5.12 [f5fe3fa4]
+- Bump make deps runtimeclasspath [2a342b18]
+- Bump snakeyaml 2.2 [6aeb3c33]
+- Bump spillway 3.0.0 (#731) [1502696d]
+- Bump explicit dep to websocket module [2e413ac2]
+- Enables EKS Pod identity via AWS SDK 2.27.8 
+
+1.13.11 - 2 Nov 2024
+- Rename async methods for semantic consistency [38114d75]
+- Save scan record async (#730) [3ad82a3a]
+- Cap number of vulnerabilities reported in scan report to 100 (#728) [2f0d8f9f]
+- Bump org.apache.commons:commons-compress:1.27.1 (#722) [adb75007]
+
+1.13.10 - 29 Oct 2024 
+- Log slow processing stream messages [e8a6b7ee]
+- Prevent scan when mode is not defined [d42bcae1]
+
+1.13.9 - 29 Oct 2024
+- Fix inspect view (#725) [dcf41dea] [e38e2c44]
+
+1.13.8 - 26 Oct 2024
+- Fix update scan status synchronously [e767c367]
+- Bump scan warn colour [705141f0]
+- Improve scan logging [f01e4dba]
+
+1.13.7 - 25 Oct 2024 
+- Add ability to configure trivy environment & DBs (#720) [0f600306]
+
+1.13.6 - 25 Oct 2024 
+- Add scan color for different vuls (#719) [ab81b6dc]
+
+1.13.5 - 23 Oct 2024
+- Fix Do not render inspect url on fail [d96275a1]
+- Fix inspect view empty nodes (#706) [b3473b7e]
+- Fix prevent scan on cached failed builds [4473fe8c]
+- Use JedisPool in place of generic connection pool (#711) [cd16cfd1]
+- Minor page title change [c3be9304]
+- GHA to submit dependency graph to Github (#715) [09c86627]
+
+1.13.4 - 20 Oct 2024
+- Add scan failure duration setting (#705) [372d6dec]
+- Change scan config log to info [f382c51a]
+- Copy all tags on mirror request [20a5f7b5]
+- Fix dev scan failure dutation & GH token [f5711ff8]
+- Fix use of container platform in scan job [61df2424]
+- Fix Prevent rendering image names as uri in mail notification [f8d57921]
+- Fix Tune mirror config [f7290bd5]
+
+1.13.3 - 18 Oct 2024 
+- Add scan history page (#704) [89da55df]
+- Add Github token to scan job env (#703) [1394871e]
+- Improve build history view (#701) [27e316da]
+- Capture usage metrics for scan and mirrors (#699) [12c65721]
+- Fix lookup for partial build ids [f663c6c1]
+
+1.13.2 - 17 Oct 2024
+- Add build list view for containerId  (#696) [3cabb839]
+- Add link to inspect from build view (#695) [6fcd4922]
+- Fix empty array icon in inspect page (#697) [2bc9594b]
+- Propagate container platform when inferring entrypoint (#692) [0922cb3f]
+
+1.13.1 - 15 Oct 2024
+- Fix conda lock download [0e86c4a3]
+
+1.13.0 - 14 Oct 2024
+- Add cleanup for timeout jobs [87898328]
+- Add code coverage report to build (#661) [8f3de2a0]
+- Add copy button and scroll bars in views (#674) [c6d24386]
+- Add download icon and updated copy icon (#678) [aaf2a431]
+- Add failure duration to mirror store [4afb975e]
+- Add inspect view (#619) [b890564b]
+- Add pool handling for Jackson mapper objects (#666) [1e5c64ab]
+- Add support for Container mirroring (#646) [2f5a1fe6]
+- Add support for Conda lock file (#642) [497185ef]
+- Added Typespec for container mirror and status (#677) [c6de5dc2]
+- Fix Include cached only with build [0a16554b]
+- Fix build status completion of submit exception [19eceb10]
+- Fix build status failure with missing exit status [900c1e45]
+- Fix build succeeded & status response [9a1b7954]
+- Fix container scan on request [2a8e1c53]
+- Fix container view alignment (#686) [097f6628]
+- Fix entity too large when using conda file > 10k  (#658) [afeaf832]
+- Fix exception when there is no conda lockfile (#685) [893cca09]
+- Fix load last build succeed [5abce684]
+- Fix mirror typespec (#670) [5b5697f8]
+- Fix repository creds check (#665) [c77d49d1]
+- Fix retrieval of last succeeded mirror result [23cb0564]
+- Fix scan status of cache record [9ee87b5f]
+- Fix singularity build mounts [3d1e00e4]
+- Fix wave build redirect [863fa105]
+- Improve build status handling [0317736b]
+- Improve handling build id in view page (#651) [69f82dc6]
+- Improve inspect for multi platform container images (#660) [884274d7]
+- Improve mirror auth check [2dca96c1]
+- Improve mirror request validation [f23d409e]
+- Increase cleanup succeeded to 30mins [69051374]
+- Move MirrorConfig to config package (#668) [2b20eeed]
+- Normalize state key prefix [BREAKING] [2e120abe]
+- Params refactoring [24b91bd6]
+- Prevent deserialization error [beb605f3]
+- Prevent scans on dry-run [a8b6bc2c]
+- Refactor state prefix [3658cfed]
+- Refactor state store components  (#657) [9ace76e7]
+- Remove BiCacheStore data structure (#653) [6c968dff]
+- Remove deprecated keyId (#616) [64e55009]
+- Remove deprecated tests [b1abf961]
+- Remove ip address (#680) [86b41760]
+- Remove logs from mail config [7a497914]
+- Remove redis from dev config [40484561]
+- Remove support for spack build (#601) [3dff0192]
+- Remove unneeded log [9a52e606]
+- Replace mirrorRegistry with buildRepository [9d31246b]
+- Revert mail template to embedded logo file [a118fee1]
+- Scan v2 (#662) [ab7e2801]
+- Simulate xclaim delay with local stream [42c3f260]
+- Update container request typespec model [1a27aee9]
+- Update scan state duration to 5 days [6270b6c5]
+- Use 3-state succeed attribute in container response [d3ed2ba1]
+- Use gstring for lock file [e5364c21]
+
+1.12.4 - 26 Sep 2024
+- Fix build succeeded & status response [8a760b39]
+
+1.12.3 - 22 Sep 2024
+- Fix build status completion of submit exception [3c3af360]
+- Fix singularity build mounts [3b338b29]
+
+1.12.2 - 18 Sep 2024 
+- Fix Remove entries permanently from stream once consumed [adfad9d6]
+- Refactor container build service [1a858c12]
+- Remove unused code [268c76ea]
+
+1.12.1 - 17 Sep 2024 
+- Fix stream check for new messages [16a7e256]
+
+1.12.0 - 17 Sep 2024 
+- Add Job manager (#605) [00daf919]
+  - Add support for build and scan operation via Job manager (#620) [0e5e5ca4]
+  - Do not retry on build failure (#632) [e6568d1e]
+  - Fix Blob cache failure duration (#643) [ebf65adc]
+  - Fix K8s job status detection (#630) [d5b45d8d] [7a9046ed] [e26811dd]
+  - Fix Retry policy delay multiplier (#629) [80037565]
+  - Improve blob cache info (#644) [8b96173a]
+  - Improve blob cache logging [e4c75671]
+  - Improve blob cache reliability (#596) [dfb64bad]
+  - Improve build & scan logging [b086f3d8]
+  - Improve job dispatcher (#645) [fee3db9d]
+  - Remove unneeded timeout logic (#633) [5eabf285]
+  - Deferred resources cleanup (#636) [c6b3e9b8]
+  - Change k8s Job deletion to foreground pods propagation (#595) [b5baea03]
+  - Run Docker process in background (#647) [1fcb4c94]
+- Add build in progress status in build page (#607) [3d940e88]
+- Add container image name to container scan view  (#635) [7858b95f]
+- Add entropy to cron services (#640) [a6d1d884]
+- Add link to build Id in container request view [57129960]
+- Add rate limiter to container request [a05c1094]
+- Add trusted builds timeout (#600) [63b58088]
+- Add /v1alpha2/container/{containerId} endpoint (#609) [6c05498c]
+- Add /v1alpha2/container/{token} in typespec (#618) [5cbd67a8]
+- Fix failing type checks [bd704bea]
+- Fix too many requests error code (#610) [ec43fa0d]
+- Increase blob cache timeout to 10m and decrease status to 1h [cf4b7588]
+- Improve container view page (#615) [d9b8cab8]
+- Improve registry auth error handling (#628) [c9185730]
+- Increase cache-tower-client to 1min (#641) [df32b305]
+- Message queue name refactoring [861d0580]
+- Simplify tests (#627) [cf53cba2]
+- Update dev default logs [6b588f4c]
+- Update nextflow.mdx (#612) [fe9b4273]
+- Update scan model (#637) [94d37637]
+- Use public repo for s5cmd (#639) [c16c0959]
+- Bump Trivy 0.55 (#638) [b69d34c4]
+
+1.11.1 - 5 Sep 2024 
+- Add rate limiter to container request [a3c63525]
+
+1.11.0 - 23 Aug 2024
+- added /v1alpha2/container/{containerId} (#609) [5221b5a0]
+- Improve contaiener view page (#615) [9e15b455]
+- Fix too many requests error code (#610) [cc9fa23f]
+- Add trusted builds timeout (#600) [7500fc5f]
+- Change k8s Job deletion to foreground pods propagation (#595) [816bd6b4]
+
+1.10.4 - 6 Aug 2024
+- Fix Prevent NPE when creds are empty [14f0476d]
+- Remove ContentReader and ContentReaderFactory classes (#584) [f05623a2]
+- Bump Surrealdb 1.5.4 for testing [51703862]
+- Minor change dumpThreads method [96fadbf5]
+- Minor logging improvement [fc436f7c]
+- Bump Java 21 as base image [23f2f6fc]
+
+1.10.3 - 5 Aug 2024
+- Fix from invalidateAuthorization from redis cache store (#591) [8f293d7c]
+
+1.10.2 - 3 Aug 2024
+- Add second level cache in RegistryAuthService (#588) [4ce329a7]
+
+1.10.1 - 26 Jul 2024
+- Add second level cache for Registry auth record (#582) [702528df]
+- Improve error report when platform cannot be found (#579) [5a9120b8]
+
+1.10.0 - 25 Jul 2024
+- Add delete after finish to blob cache jobs (#576) [2ef034c0]
+- Use k8s job for blob cache transfer  (#479) [44819b48]
+- Updated Wave license note (#570) [273f4b21]
+- Throw an error on missing credentials for custom build repo (#564) [760f2173]
+- Enable Cleanup for blob transfer pods (#568) [5f045e14]
+- Prevent hard error when launch credentials cannot be accessed [600fce7a]
+- Simplify credentials lookup [b2790ee8]
+- Extend build timeout (#574) [7cf0b756]
+- Bump wave-utils@0.13.1 [c118f0de]
+
+1.9.1 - 11 Jul 2024
+- Prevent hard error when launch credentials cannot be accessed [a318a855]
+
+1.9.0 - 11 Jul 2024
+- Add Typespec API definitions (#537) [32f7dd16]
+- Add cache record-stats (#534) [229926e2]
+- Add http 429 error to auth service retry condition [8282a492]
+- Check and delete corrupted blobs cache uploads (#533) [b0c775a3]
+- Deprecate the support for Spack and remove the support for it in the codebase (#550) [85a05196]
+- Enable ECR authentication via AWS compute env credentials (#303) [ec895222]
+- Fix Blob cache config for local dev [0d5413bf]
+- Fix client cache deadlock (#547) [cc6012ff]
+- Fix multiple s3clients in wave (#554) [45689500]
+- Minor change in mail notification [0aba6997]
+- Refactored metrics service (#549) [5e0d32ac]
+- Remove buildlogs aws config to not initialize AwsS3Operations (#558) [d50e5b7a]
+- Update metrics response (#536) [b6b36a97]
+- Bump buildkit 0.14.0 (#528) [c54172d1]
+- Bump buildkit 0.14.1 (#548) [37afb782]
+- Bump trivy 0.53.0 [f27ff527]
+- Bump version 1.8.3 [55b473e1]
+
+1.8.3 - 29 Jun 2024
+- Fix client cache deadlock (#547) [cc6012ff]
+- Fix failing test [263b44d3]
+- Add cache record-stats (#534) [229926e2]
+
+1.8.2 - 14 Jun 2024
+- Fix get image auth digest (#530) [df8ec041]
+
+1.8.1 - 13 Jun 2024
+- Fix digest warning (#526) [6e34ff0a]
+- Fix image name strategy (#513) [3bd8ffb5]
+
+1.8.0 - 10 Jun 2024
+- Add breakdown per org on stats metrics when a date is specified (#517) [b24894a4]
+- Replace Kaniko with Buildkit (#503) [a26f5dfe]
+- Implement cache store for build records (#505) [dd195deb]
+- Fix do not show null in build view [763ffe03]
+- Fix type in Const [b1bdb948]
+- Fix handling blob response headers (#504) [de97575e]
+- Fix missing endpoint on patched JWT token [46bbcd77]
+- Improve digest retrivial logs [5976967a]
+- Excludes JWT records with no endpoint [c98db8fb]
+- Bump Gradle 8.8 [2e4568da]
+
+1.7.9 - 29 May 2024
+- Improve JWT refresh handling  (#512) [751edb03]
+- Mark release as draft when ending with -Ax -Bx -RCx [66ba7ea7]
+- Removed unused imports (#510) [182e3f0d]
+- Fix Use atomic strategy for Cacheable ops [923ae67c]
+- Fix failing build [8adb52ab]
+
+1.7.8 - 15 May 2024
+- Prevent container freeze without custom repo (#499) [ec5932df]
+- Improve pairing record check (#500) [7ce86dc9]
+- Improve thread pool handling (#494) [e2c8c21b]
+
+1.7.7 - 11 May 2024 
+- Fix legacy tower endpoint validation (#495) [3257ad42]
+
+1.7.6 - 8 May 2024
+- Fix the handling of pip packages with Conda (#493) [35d9c1fd]
+- Fix Community repo name composition when namingStrategy is not specified [385c53cc]
+- Fix aggregate metrics issue (#487) [e4279602]
+
+1.7.5 - 2 May 2024
+- Fix community repo naming normalisation [a9b12d76]
+
+1.7.4 - 30 Apr 2024
+- Prevent use community registry w/o packages (2) [9eb11031]
+
+1.7.3 - 30 Apr 2024 
+- Prevent use community registry w/o packages [24a409de]
+
+1.7.2 - 29 Apr 2024 
+- Improve default container name handling [5325f2b1]
+- Improve error reporting [d6058919]
+- Prevent accessing to docker config [1c3d08d1]
+- Update metric service to get aggregated metrics  =(#472) [8ee9309f]
+- Update timeout max-rate to 20/2m [af0e4607]
+- Use IO executor consistently (#471) [ed57ce28]
+- Remove deprecated metrics v1alpha1 (#467) [3da8302d]
+
+1.7.1 - 23 Apr 2024
+- Tune thread pools [93e119ee] [0a5d08e7]
+- Added null check for container image name (#465) [30a6bdb6]
+- Move Redis tests config to setupSpec (#462) [d9fb2942]
+- Improve tests [9ab2cf42]
+
+1.7.0 - 22 Apr 2024
+- Improve build container naming strategy (#460) [31d459ed]
+- Helper methods refactor [54d2301b] [052acb32]
+- Refactor BuildRequest class (#456) [030ca310]
+- Improve request validation [6a3c4c79]
+- Bump trivy 0.50.1 [06ee665e]
+- Bump kaniko 1.22.0 [38a24afd]
+- Bump surrealdb 1.4.2 [5daf4ca7]
+
+1.6.1 - 11 Apr 2024
+- Undeprecate containerImage attribute in response object [23411028]
+
+1.6.0 - 10 Apr 2024 
+- Add metrics service based on Redis counters (#429) [ac84eadb]
+- Add v1alpha2 request endpoint (#423) [82d1cc49]
+- Refactor build id & status endpoint (#421) [354358c6]
+- Fix platform migration (#444) [2db9e422]
+- Document build status endpoint (#447) [c38db704]
+- Fix inspect for oras-oci images [8b4e18e9]
+- Minor refactor [15cb3970]
+- Refactor controllers name [d68617ba]
+- Remove deprecated fields [5ca41532]
+- Patched tower endpoints to new ones (#440) [f78647e2]
+- Fix Containerfile encoding (#441) [d742aa67]
+- Improve error reporting for AWS ECR auth failure [06141219]
+- Remove unused exception [bc5570b3]
+- Fix syntax error reported by Intellij [343887a4]
+- Fix Build pod name (#438) [4e54ce1a]
+- Fix RedisTestContainer flaky test (#436) [a90b44e5]
+- Update platform api endpoint to api.cloud.seqera.io (#434) [1e43e8b1]
+- Use shorted ttl when creating build result object [7525c0f7]
+- Minor change in container view [bd783221]
+
+1.5.2 - 25 Mar 2024
+- Fix No such property: ioExecutor [f603868b]
+
+1.5.1 - 25 Mar 2024
+- Fix Thread pool selection on container controller [d882bd4d]
+- Fix trace slow endpoint duration [fb1eea96]
+
+1.5.0 - 25 Mar 2024 
+- Add fixed executor to future store [9f61abe9]
+- Add timeout retry limiter [0a98aa96]
+- Fix failing tests [eeb9ddfe]
+- Add thread pool monitor cron [a1cdcc13]
+- Bump corretto-17.0.10-al2023-jemalloc as base image [7238a86d]
+- Evict status redesigned (#419) [9cf07b56]
+- Add API and UI to evict a wave request from token cache  (#410) [5833c18d]
+- Add all values to entrypoint (#416) [7fef9a59]
+- Add documentation for Metrics API (#414) [6e16fc41]
+- Update aws sdk to version v2 (#415) [1cd5d496]
+- bumped actions/upload-artifact to v4 and fix tests (#417) [7f0d7866]
+
+1.4.0 - 27 Feb 2024
+- Add services to query Wave usage metadata  (#393) [6325b25c]
+- Add filter to trace slow endpoints [be49262f]
+- Add default to WaveContainerRecord when timestamp is null (#407) [f6eea93e]
+- Changed fusionVersion type to String (#411) [73d1cded]
+
+1.3.3 - 18 Feb 2024
+- Bump actions v4 [30a10876]
+- Add aws-java-sdk-sts and bump version 1.12.471 [c2ff7a8b]
+- Allow no default registries config [9523974e]
+- Improve request validation [b66b3de9]
+- Add error message when spack file is malformed (#361) [6439404b]
+- Add Wave configurations documentation  (#360) [3d167d99]
+- Add enterprise build container [fc6342a9]
+
+1.3.2 - 12 Feb 2024
+- Patch missing user condition on ContainerRequestData [9a8f2a5c]
+
+1.3.1 - 12 Feb 2024 
+- Fix compatibility for existing ContainerRequestData records [e665629f]
+- Improve license check [95a2755e]
+- Improve token request logging [930a7887]
+
+1.3.0 - 9 Feb 2024
+- Add support for container includes and inspect (#397) [57b62b69]
+- Remove support for Tower HTTP connector (#384) [180efe3c]
+- Update copyright info [197fd8ef]
+
+1.2.1 - 28 Jan 2024
+- Add support for SurrealDB v1.x (stable)  (#388) [e8ba40c7]
+- Remove TimedInputStream class [f59b02b3]
+- Remove unused setting [73cbbd29]
+- Bump nf-jdk:corretto-17.0.10-jemalloc as base image [a426d67e]
+
+1.2.0 - 22 Jan 2024
+- Add support for Cloudflare WAF token  (#383) [565ed112]
+- Add support for blob caching (#359) [627229ba]
+- Fix bootstrap error when blobCache is disabled [cf4e60dc]
+- Fix annotations processing package (#364) [e6adb98d]
+- Changed wave.build.public to wave.build.public-repo (#372) [842e655d]
+- Bump kaniko 1.19.2 [f1c5fd38]
+
+v1.1.7 - 19 Dec 2023
+- Improve usage of thread pools for build and scan service [1cd2dc90]
+- Implements streaming client for large binary downloads (#358) [592ce522]
+- Update failing tests [31edb5e7]
+- Fix typo in comment [c10cc472]
+- Remove unused consts [24315f03]
+- Refactor build settings via BuildConfig class (#324) [f6924f4a]
+- Bump trivy 0.47.0 [3ff4a89f]
+
+v1.1.6 - 11 Dec 2023
+- Revert use of virtual threads for HttpClient [c14ecfc5]
+- Revert use of virtual threads for TimedInputStream [b3040ddc]
+
+v1.1.5 - 27 Nov 2023
+- Add retry policy when reading manifest response [4ff44728]
+- Fix Container 302 redirect response with body (2nd version) [4a16e904]
+- Revert "Fix Container 302 redirect response with body" [55f8f1b1]
+
+v1.1.4 - 25 Nov 2023
+- Use volatile to prevent invalid mem access [9f0378d5]
+- Use virtual threads for I/O bound operations [70db490a]
+- Fix NPE when accessing pollDuration [81f9aa57]
+- Minor change on UnexpectedReadException error message [516cca5c]
+
+v1.1.3 - 24 Nov 2023
+- Improve error reporting for TimedInputStream exceptions [c8895326]
+- Fix Container 302 redirect response with body [1a90cbc2]
+- Bump gradle to 8.4 (#337) [227002fb]
+
+v1.1.2 - 19 Nov 2023
+- Fix HTTP 429 error message [845250d0]
+- Fix build and cache repository name validation [7f6bf852]
+- Allow anonymous authorization [e4b1ec14]
+
+v1.1.1 - 16 Nov 2023
+- Fix response for HTTP 429 status error response [523b650a]
+- Bump MN 3.10.3 + Jedis 5.0.2 + K8s client 19.0.0 [798ea886]
+
+v1.1.0 - 10 Nov 2023
+- Add support for ARM architecture for Singularity build (#286) (#325) [236dceb5]
+- Add license manager checksum validation (#265) [1078066e]
+- Minor change in build notification email [a56d8a52]
+- Fix Logs are not upload on build failure (#328) [bf3ef01d]
+- Fix failing tests (#322) [9b4c0fd9]
+- Fix/wave Spack quiet filestrip (#321) [e639e28f]
+- [docs] Update docs (#319) [0d9f09b2]
+- [docs] Add tower endpoint (#329) [2b0e0a70]
+- Bump nf-jdk:corretto-17.0.9 [5c69ebc0]
+- Bump kaniko v1.18.0 [43374c63]
+
+v1.0.2 - 26 Oct 2023
+- Add deny paths HTTP filter 
+- Enable reuse in Spack builds (#317) [4f1b8bdf]
+
+v1.0.1 - 17 Oct 2023
+- Add new logos (#311) [338ef9d0]
+
+v1.0.0 - 16 Oct 2023
+- Bump version 1.0
+
+v0.43.1 - 12 Oct 2023
+- Remove public config [095befa2]
+- Improve logging [00e2d777]
+- Minor logging changes [bbdf2472]
+
+v0.43.0 - 7 Oct 2023
+- Add support for public build repo [e7231032]
+- Add build logs persistence [ci ski] [8e6fd4cb]
+- Bump io.micronaut.core.annotation.Nullable [fbe60a3f]
+- Bump Java build chain to Java 19 [3e91fce0]
+
+v0.42.0 - 4 Oct 2023 
+- Add support for Spack binary cache [41877a92]
+- Add support for S3 hosted Spack binary cache (#294) [82682b63]
+- Add known error handling to ProxyClient [8cdd5593]
+- Add status 500 to HTTP retriable errors [81763eb8]
+- Deprecate HTTP-based pairing controller [522700f0]
+- Decrease log verbosity [bd420be3]
+- Improve request validation [8cab3cc0]
+
+v0.41.13 - 2 Oct 2023
+- Add TimedInputStream [f31cf56f]
+
+v0.41.12 - 1 Oct 2023 
+- Use cached thread pool for http client [af32e6b5]
+
+v0.41.11 - 1 Oct 2023
+- Rollback to Java 17 [32cc9529]
+- Use Fixed thread pool for Http client [41225446]
+
+v0.41.10 - 1 Oct 2023
+- Add ping endpoint for testing [f97e7140]
+- Fix use of HttpClient in HttpTowerConnector [dc633b11]
+- Revert use of StreamedFile for blob download [80ee4ed0]
+
+v0.41.9 - 30 Sep 2023 
+- Improve response handling and binary download [bdc73943]
+- Improve HttpClientFactory logging and eviction [1eda4c69]
+- Bump commons-compress:1.24.0 [fb74a6e0]
+
+v0.41.8 - 29 Sep 2023
+- Improve caching of HttpClient [679bd320]
+- Improve http error retryable policy [c03b734d]
+- Improve http client error handling [9f3a7db5]
+- Bump kubernetes client to 18.0.1 and commons-compress to 1.24.0 (#298) [2b84bb20]
+
+v0.41.7 - 28 Sep 2023
+- Improve http client instance per request handling [616c1072]
+
+v0.41.6 - 28 Sep 2023 
+- Do not cache http client across requests [62c86530]
+
+v0.41.5 - 25 Sep 2023
+- Improve stability of HTTP requests handling [4989de69]
+- Improve err logging [eb74437d] [7bbbc5e8]
+- Change http config log level [e63039b3]
+- Bump AGPL 3.0 copyright notice [027dc618]
+- Bump jib plugin 3.4.0 [7447f22c]
+
+v0.41.4 - 23 Sep 2023
+- Add virtual thread executor for httpclient factory (#290) [2305f776]
+- Bump Kaniko v1.16.0 [72312d5b]
+
+v0.41.3 - 22 Sep 2023 
+- Improve retry policy for proxy target server errors [598ca832]
+
+v0.41.2 - 20 Sep 2023 
+- Add digest-store cache to prevent network roundtrip [58893c8d]
+
+v0.41.1 - 14 Sep 2023
+- Add Stream of digest payload to avoid OOM [15dc58a2]
+- removed unwanted lines (#293) [3bc90a1a]
+
+v0.41.0 - 7 Sep 2023
+- Bump wave-utils@0.7.4 [7ecd1008]
+- Add support for Spack packages to Singularity builds (#288) [955a7448]
+- Bump MPL 2.0 license [8f4677d4]
+- Revert "Add cacheable annotation to RegistryCredentialsProviderImpl" [db983345]
+- Improve build logging [e11a222d]
+- Remove deprecated use FilterOrderProvider [08d8e2e8]
+
+v0.40.3 - 2 Sep 2023
+- Normalise err messages [2c0884c4]
+- Bump wave-utils@0.7.2 [6924139e]
+- Bump corretto-17.0.8-jemalloc as base image [f73309b4]
+
+v0.40.2 - 31 Aug 2023
+- Fix IOException should be managed by a HTTP retry policy [383e5e98]
+
+v0.40.1 - 30 Aug 2023 
+- Use HttpClient factory to create singleton instances [464c6b67]
+
+v0.40.0 - 26 Aug 2023 
+- Improve naming of build containers [ffd8785f]
+- Add cacheable annotation to RegistryCredentialsProviderImpl [9ebff597]
+
+v0.39.0 - 24 Aug 2023 
+- Add support for dryRun build requests [cd1bf750]
+- Fix Do not show scan link on build failure [9e1dfb77]
+- Fix Cannot cast object to null error [20362389]
+- Use lib-mail@1.0.0 [b66217a3]
+- Bump wave-api@0.5.0
+- Bump wave-utils@0.6.2 [9d740b42]
+- Bump MN 3.10.1 [0c49f9b6]
+
+v0.38.0 - 19 Aug 2023
+- Add support for build for Singularity images (#282) [258183d2]
+- Add Support for handling .dockerignore patterns added in wave-util (#281) [4dd89b93]
+- Add jaxb-api runtime deps [71f2cfbc]
+- Fix Perform scan only on successful build [1673d2d0]
+- Fix Use root user in Wave container based on micromamba [704fc4ed]
+- Remove test controller [dac67291]
+- Refactor submodules [b0fc36a9]
+- Bump singularity:v3.11.4-slim dep [8430b010]
+- Bump wave-utils@0.5.0 [75f792af]
+- Bump wave-api@0.4.0 [1f7ef5fc]
+- Bump wave-api@0.3.2 [540e4602]
+
+v0.37.1 - 15 Aug 2023
+- Improve http rate limiter 
+
+v0.37.0 - 14 Aug 2023
+- Add http requests rate limiter [74ecc399]
+- Fix artifact publishing [publish] [5f71c62e]
+
+v0.36.1 - 11 Aug 2023
+- Fix support for build context [96a32ef0]
+- Add toString method to ContainerTokenRequest [9e230004]
+- Add "with" methods to SpackOpts [56699cea]
+- Add Spack + Conda templating logic [90d42780]
+- bump guava@32.1.2 [88de2304]
+
+v0.36.0 - 6 Aug 2023
+- Add support for custom build context [6c262575]
+- Add build info to container response [1f2d3f56]
+- Add container build controller [362cf0ea]
+- Add severity attribute to scan config [63182663]
+- View templates cleanup [000155c3]
+- Scan API cleanup [0d00245e]
+- Improve scans endpoint [ca818468]
+- Improve scan page rendering [cce69fb4]
+- Add TimeoutException to Surreal retry policy [3d4141f7]
+- Add library publishing to CI build [4fb5988c]
+
+v0.35.3 - 2 Aug 2023
+- Annotate controllers with @ExecuteOn(TaskExecutors.IO) [aef70407]
+
+v0.35.2 - 1 Aug 2023
+- Enable Netty metrics (#277) [79915ca8]
+- Add retry policy to Surreal DB client 276) [735b765e]
+- Fix build process resources [c2f109c9]
+
+v0.35.1 - 24 Jul 2023
+- Add @ExecuteOn(IO) to Token and Service controllers [e0c95a02]
+- Fix Build ID instead of Request ID [76e6124c]
+- Remove unused forceBuild option [621334df]
+
+v0.35.0 - 22 Jul 2023
+- Add containers freeze feature (#260) [a99f9427]
+- Add container build scan service [699ec5a3]
+- Add AWS SES Support in mail service (#267) [177c8943]
+- Fix Prevent config augmentation for freeze containers [da410819]
+- Fix HTTP client retry logic using with Failsafe [053e353e]
+- Fetch K8s logs on scan failure [cdcf5d81]
+- Make security scan an opt-in feature [dbaaddaf]
+- Remove deprecated checksum validation [eb092b32]
+- Bump nf-jdk:corretto-17.0.8 base image [88ee64b1]
+
+v0.34.3 - 13 Jul 2023
+- Fix Invalid size in container manifest [e2c4c536]
+- Fix parsing Dockerfile FROM statement [5104f8a6]
+- Bump Kaniko 1.12.1 [4a13d77e]
+- Bump MN 3.9.4 [2b314592]
+
+v0.34.2 - 2 Jul 2023
+- Fix config resolution [b6f06bc3]
+- Bump base image nf-jdk:corretto-17.0.7-up2 [70425710]
+
+v0.34.1 - 2 Jul 2023 
+- K8s build improvements [9ea63642]
+- Update dependencies to fix CVEs (#250) [e5e3d0e8]
+- Remove unsupported WAVE_LAYER_PATH [a5f5fda1]
+- Fix failing test [434ab374]
+- Bump nf-jdk:corretto-17.0.7-up1 as base image [0e93bfaa]
+
+v0.34.0 - 15 Jun 2023
+- Add support for binary cache for Spack builds (#249) [b2c66af4]
+- Fix ContainerConfig toString method [bebd78f2]
+
+v0.33.4 - 8 Jun 2023 
+- Fix non-deterministic auth failure with AWS public registry [41bc6992]
+
+v0.33.3 - 30 May 2023
+- Fix support for anonymous container registry
+
+v0.33.2 - invalid
+
+v0.33.1 - 21 May 2023
+- Improve build route path handling [77388e3a]
+- Increase server idle-timeout to 910 seconds (~ 15min) [6da03877]
+
+v0.33.0 - 15 May 2023 
+- Add support for AWS ECR public registry 
+ 
+v0.32.2 - 13 May 2023 
+- Bump base image nf-jdk:corretto-17.0.7 [275e3377]
+
+v0.32.1 - 7 May 2023
+- Fix pulls counters [d3156b23]
+
+v0.32.0 - 7 May 2023
+- Add wave & fusion prometheus counters [c8d55b87]
+
+v0.31.1 - 3 May 2023
+- Improve error handling for connection timeout [f2fbd39c]
+
+v0.31.0 - 29 Apr 2023
+- Add Conda and Spack file to build reports [b63fd2a1]
+- Fix flaky test [63e361da]
+
+v0.30.3 - 26 Apr 2023
+- Fix OOM error when pulling layer blobs [f0653794]
+
+v0.30.2 - invalid
+
+v0.30.1 - 8 Apr 2023
+- Rollback to default thread pools [4b422337]
+- Bump Micronaut 3.8.8 [bc84bf5f]
+
+v0.30.0 - 7 Apr 2023
+- Add cacheable to tower client [2e0242d7]
+- Refactor and cleanup [ff709edb]
+- Reimplement PairingOutboundQueue [4834187a]
+- Reimplement future store with redis atomic hash [55e63684]
+- Improve queue naming [21114305]
+- Use short random as msgId [84ea26ad]
+- Strip protocol [558c9faf]
+- Use completable future [15324cf3]
+- Remove pairing connect check [24115400]
+
+v0.29.6 - 6 Apr 2023 
+- Offload proxy controller to IO executor [2800fbf7]
+- Revert "Use send sync" [4a460691]
+- Improve logging [151a633b]
+
+v0.29.5 - 6 Apr 2023 
+- Code cleanup [317a7666]
+- Handle Websocket session closed exception [7fe3c5f5]
+- Add Redis connection pool config [b8a35655]
+
+v0.29.3/4 - 5 Apr 2023 
+- Use list for future [51164817]
+
+v0.29.2 - 5 Apr 2023 
+- Use send sync [cbc47d5d]
+
+v0.29.1 - 5 Apr 2023 
+- Bump 10 thread for wave event loop [7b000a7e]
+- Cleanup and refactoring [f8c8be3e]
+
+v0.29.0 - 5 Apr 2023 
+- Use polling over supplyAsync [4a1e336a]
+
+v0.28.6 - 5 Apr 2023 
+- Add consumers list [7d561f6d]
+- Use singleton websocket instance [c0390502]
+- Add custom MN worker pool [be3cbe78]
+- Remove redis session [b23c7225]
+- Improve logs [0f29cef7]
+- Add CPUs info [30f1e999]
+
+v0.28.5 - 4 Apr 2023 
+- Add websocket sent log [0e7e9fd5]
+
+v0.28.4 - 4 Apr 2023 
+- Use websocket send async [bc136f55]
+
+v0.28.3 - 4 Apr 2023 
+- Use Redis hash for inbound futures [844f4f2e]
+
+v0.28.2 - 4 Apr 2023 
+- Improve future poll + refactor [53c6a335]
+
+v0.28.1 - 4 Apr 2023 
+- Fix missing timeout exception on redis future [a9d640a0]
+- Minor logging changes [c81e78bf] [4943ba6f] [6768b7eb]
+- Update application dev [db4ae108]
+
+v0.28.0 - 3 Apr 2023 
+- Replace Redis pub/sub and stream with a list based approach [2af4fc01]
+- Bump amazon corretto 17.0.6 [b6b6e0d0]
+
+v0.27.2 - 1 Apr 2023
+- Minor improvement on tower client [275d21b9]
+
+v0.27.1 - 30 Mar 2023 
+- Add Websocket pairing using Redis streams (#238) [0b2ed0cd]
+
+v0.27.0 - 27 Mar 2023 
+- Add Wave pairing via Websocket connection [f840fcdd]
+- Bump build timeout to 15m [d2970fb5]
+
+v0.26.8 - 22 Mar 2023
+- Rename spack.yml to spack.yaml [9e67fdc7]
+
+v0.26.7 - 22 Mar 2023
+- Minor log change [da6cc096]
+- Fix digest store checksum compute [de07254e]
+
+v0.26.6 - 21 Mar 2023 
+- Add digest checksum validation [284e12a]
+
+v0.26.5 - 17 Mar 2023
+- Resolve host for relative redirects [b09d4d7b]
+- Minor log change [f36a2339]
+
+v0.26.4 - 17 Mar 2023 
+- Improve debugging [c0ee6e6]
+- Fix docs [e148b307]
+
+v0.26.3 - 15 Mar 2023 
+- Revert "Block permanent failing pairing endpoints" [c55cd361]
+- Add Mkdocs documentation  (#221) [1f777e76]
+- Add Prometheus metrics percentiles [5d019a56]
+- Remove JSON prettyPrint [ecaf4d8f]
+
+v0.26.2 - 3 Mar 2023 
+- Block permanent failing pairing endpoints [afbaa449]
+- Fix Gitea Container registry auth [e732ba90]
+
+v0.26.1 - 1 Mar 2023
+- Relax retry on pairing connectivity check [ee4b133b]
+- Block permanent failing pairing endpoints [afbaa449]
+
+v0.26.0 - 26 Feb 2023
+- Add Container request validation [20b63669]
+- Add support for Spack file [81b5e282]
+- Improve tests [e82fee2f] [850e8533]
+
+v0.25.10 - 25 Feb 2023
+- Improve request validation [696bdd48]
+- Remove deprecated code [c59434cf]
+
+v0.25.9 - 22 Feb 2023
+- Fix pairing record lease (#222) [34332a4a]
+- Improve error reporting [ac5e937a]
+
+v0.25.8 - 22 Feb 2023
+- Fix Azure registry auth [5fc3115e]
+
+v0.25.7 - 21 Feb 2023
+- Improve docker auth error reporting [eceffe85]
+- Fix log typo [030dbc67]
+
+v0.25.6 - 15 Feb 2023
+- Add landing redirection [ede9a242]
+- Fix Build rate limit message [c9aa73e6]
+- Improve Registry auth error reporting [f327c3c9]
+- Improve long response body [4c9fef41]
+- Bump MN thread pool selection [c52393f6]
+- Bump Groovy 3.0.15 [da793751]
+- Bump to MN 3.8.4 [a98cc198]
+
+v0.25.5 - 11 Feb 2023
+- Fix unresolved container cache [f26dbbad]
+
+v0.25.4 - 11 Feb 2023
+- Fix issue when rendering layer config [4c10db9f]
+
+v0.25.3 - 11 Feb 2023
+- Minor change [31e66fa]
+
+v0.25.2 - 10 Feb 2023
+- Use fully qualified path for digest store [6bf0761a]
+- Remove deprecated method [efdd4ffe]
+- Add container tag path caching [a400e77a]
+- Improve logging [e3f09ca8]
+
+v0.25.1 - 8 Feb 2023
+- Add expiration to container view [54bc8d99]
+- Improve pairing keys lease (#218) [2b90612c]
+- Strip container config data [28b84910]
+
+v0.25.0 - 5 Feb 2023
+- Add support for OCI image format [ec5d3792]
+- Add Wave container requests store and introspection (#217) [77728a0f]
+- Improve error handling and messages (#219) [eae43983] [b427989e]
+- Fix pull of container with no name prefix [09122f73]
+- Improve logging [33a99692]
+
+v0.24.5 - 25 Jan 2023
+- Remove deprecated class & rename package [7145c1f9]
+- Improve logging & debugging [95431b72]
+
+v0.24.4 - 23 Jan 2023
+- Refactor Pairing service name [8c616e53]
+- Task 212 213/improve tower client (#215) [d0d37d27]
+
+v0.24.3 - 19 Jan 2023
+- Improve error reporting [56ccbc12]
+
+v0.24.2 - 18 Jan 2023
+- Patching invalid workspaceId concatenation [87bb7602]
+- Improve logging [9b22960c]
+
+v0.24.1 - 17 Jan 2023
+- Fix missing tower endpoint URL for old client [7c408d7e]
+- Remove unused tower environment file [981154bf]
+
+v0.24.0 - 17 Jan 2023
+- Add support for Tower credentials API in place of DB connection
+
+v0.23.7 - 23 Dec 2022
+- Fix download failed issue caused by relative redirect path [65d7d03d]
+- Refactor tests [2016664f]
+
+v0.23.6 - 21 Dec 2022
+- Fix AWS ECR auth service [fce102ab]
+
+v0.23.5 - 9 Dec 2022
+- Fix Kaniko compressed-caching flag [1c04155c]
+
+v0.23.4 - 8 Dec 
+- Allow the use of SHA256 container names [afd36305]
+
+v0.23.3 - 3 Dec 2022
+- Fix duration deserialisation [19d9af71]
+
+v0.23.2 - 3 Dec 2022
+- Fix Invalid config for augmented container [bb5b9673]
+
+v0.23.1 - 26 Nov 2022
+- Add HttpClient retry strategy [bd49d1ff]
+- Make http client timeout configurable [0535086f]
+- Improve container platform handling [225095f2]
+
+v0.23.0 - 22 Nov 2022
+- Add persistence service (#163) [993ad158]
+- Add view first iteration (#187) [2d5ca749]
+- Add cacheable + retryable for isManifestPresent (#191) [672fb972]
+- Fix support for Singularity container engine (#202) [46a8d76d]
+- Fix stop redis in every test (#184) [473a2c74]
+- Improve visualization for builds (#197) [68a379d3]
+- Upgrade github actions to v3 (#196) [f30c75ff]
+- Remove fixed registry configurations (#192) [697aa5f7]
+- Multi platform build (#125) [1f0f8f86]
+- Use jedis instead jedispool in tests (#188) [22fb80cb]
+- Bump gradle 7.5.1 [a9be6272]
+- Bump Java 17 + groovy 3.0.13 + MN 3.7.3 [05810ac2]
+- Bump cr.seqera.io/public/nf-jdk:corretto-17.0.5 as base image [eeb9301a]
+
+v0.22.4 - 26 Oct 2022
+- Update readme [614c8143] <Paolo Di Tommaso>
+- Fix Docker config.json mount in K8s [5e5a67f7] <Paolo Di Tommaso>
+
+v0.22.3 - 26 Oct 2022
+- Allow empty K8s storageClaim [4f6d7e69] <Paolo Di Tommaso>
+- wait for redis testcontainer is ready (#181) [08d2b0ed] <Jorge Aguilera>
+- Remove the use of the init container (#180) [b77aabca] <Jorge Aguilera>
+
+v0.22.2 - 24 Oct 2022
+- Bump dev build repository [f9131b70] 
+- Enable redis pool configuration + Bump Micronaut 3.7.2 (#179) [d8d9ca04]
+- Improve date fmt [4af6376f]
+
+v0.22.1 - 23 Oct 2022
+- Revert to MN 3.3.4 [db0e6fc3]
+
+v0.22.0 - 23 Oct 2022 
+- Improve build cache for failed builds (#176) [41972309]
+- Improve the time format in the completion email (#169) [84357efe]
+- Make Tower user auth async (#166) [55f06451] <Jorge Aguilera>
+- Check if target image exist before building a new one (#173) [78a5fa2e]
+- Add basic k8s deployment [6c81171a]
+- Update ngrok launcher script [e72979ce]
+- Bump Micronaut 3.7.2 (#174) [28172705] 
+- Bump kaniko 1.9.1 (#175) [8bb72c47]
+- Bump base image seqera-labs/nf-jdk:corretto-17.0.5 [85921df3] 
+
+v0.21.7 - 18 Oct 2022 
+- Switch to quay.io/seqeralabs/nf-jdk:corretto-17.0.4 as base image 
+ 
+v0.21.6 - 17 Oct 2022 [BROKEN BASE IMAGE]
+- Improve registry auth lookup error [0f696146] 
+
+v0.21.5 - 4 Oct 2022
+- Rollback timestamp and fingerprint fields [466b3a46] <Paolo Di Tommaso>
+
+v0.21.4 - 3 Oct 2022
+- Count all manifest digest requests [02435bff] <Paolo Di Tommaso>
+- Add timestamp + fingerprint to request [5ccc08bd] <Paolo Di Tommaso>
+- Test on Java 17 [9085d00d] <Paolo Di Tommaso>
+- Update changelog [a823eb6d] <Paolo Di Tommaso>
+
+v0.21.3 - 1 Oct 2022
+- [release] 0.21.3 [c028de57] <Paolo Di Tommaso>
+- Fix test [80ee2fba] <Paolo Di Tommaso>
+- Improve slow down error message [0e8adfcc] <Paolo Di Tommaso>
+- Improve logging [1342a1fd] <Paolo Di Tommaso>
+- Rename ContainerScanner to ContainerAugmenter [65029477] <Paolo Di Tommaso>
+- Parse token body only when status code is 200 (#164) [5a66a7d1] <Jorge Aguilera>
+
+v0.21.2 - 29 Sep 2022
+- Add new get direct response in proxyclient (#162) [cb49c475]
+- Add test for user info (#161) [c199ed41]
+- Add proxy client trace response [ef3c78e3]
+- Refactor Tower client using Java http client [f891e825]
+
+v0.21.1 - 27 Sep 2022
+- Add support for Tower user auth [a62c6836]
+
+v0.21.0 - 27 Sep 2022
+- Bump nf-jdk:corretto-17.0.4 as base image [fbabf800]
+- Fix Disable discovery client caching and re enable prometheus config (#156) [d94e391a]
+- Add support for google artifact registry (#157) [468ed9e7]
+
+v0.20.3 - 26 Sep 2022
+- Add build clean setting  [55b83101]
+- Add compress caching build option [ba4b788b]
+- Add support for pod resources [359743aa]
+
+v0.20.2 - 26 Sep 2022 
+- Minor change object ser-deser [e7796e87]
+- Duplicate host name in the creds file [43827fff]
+- Rename CacheStore to BuildStore [80a12ce5]
+
+v0.20.1 - 25 Sep 2022 
+- Fix synchronisation for distributed build [e227bdf1]
+- Add versioned redis keys [80ec83b2]
+
+v0.20.0 - 24 Sep 2022 
+- Add manifest/blob caching via redis 
+- Improve error reporting when missing auth token [d0e4ce61] 
+
+v0.19.4 - 24 Sep 2022 
+- Revert "notask: adds monitoring endpoint for prometheus (#147)" 
+
+v0.19.3 - 23 Sep 2022 
+- Change redis prefix [9933542b]
+
+v0.19.2 - 23 Sep 2022 
+- Use column prefix keys for redis [e9b39cbc]
+
+v0.19.1 - 23 Sep 2022
+- Adds prometheus configuration for monitoring [cb28d80]
+
+v0.19.0 - 22 Sep 2022 
+- Refactor config json moving into request [554bdd9a]
+- render build timeout exception using docker format (#143) [3d98d9b6]
+- improve ratelimit test (#142) [e5f54067]
+- prefix objects store in redis (#141) [371541e3]
+- return a clear error message when rate limit is hit (#138) [b188e156]
+
+v0.18.1 - 19 Sep 2022 
+- Fix wave debug option [a72d97e5]
+- Fix build invalid timeout interval [2dace3ed]
+
+v0.18.0 - 19 Sep 2022
+- Add support for workspace credentials + fix docker push [7850a2f1]
+- Fix user attributes lazy loading [c8f692fb]
+- Bump mysql driver for testing [f0ddf36d]
+
+v0.17.1 - 17 Sep 2022
+- Add user to completion email [2e45eee7]
+- Remove equals annotation from User [853513af]
+
+v0.17.0 - 16 Sep 2022
+- Build cache storage (#129) [d007184d]
+- Add different rate limit for auths or anonymous requests [99372a3a]
+
+v0.16.0 - 14 Sep 2022 
+- Improve scalability adding blob response redirection [4e50a0e3]
+
+v0.15.2 - 12 Sep 2022 
+- Add toString to domain objects [0169d508]
+- Improve K8s log info [da473fdf]
+- Add rate limit logic to test controller [7fe31c31]
+
+v0.15.1 - 11 Sep 2022
+- Fix tower table names case [256c0b65]
+
+v0.15.0 - 10 Sep 2022
+- Fix build workdir cleanup [ed60079e]
+- Refactor util classes [1dddae50]
+- feature: add rate limiter for pull request (#120) [6ffdbd39]
+- Add external storage for token caching (#115) (#122) [dcc370ee]
+- bugfix: activate storage factory in rate-limit (#121) [c0f8cc69]
+- feature: rate limit for builds (#114) [00b71823]
+- feature: specify node-selector and service-account (#118) (#119) [d93b0cc0]
+- Improve error handling [28e491a9]
+- Allow customs labels for build pod (#117) [6841bca8]
+
+v0.14.2 - 7 Sep 2022
+- Return an actionable error on invalid path
+
+v0.14.1 - 5 Sep 2022
+- Fix registry auth invalid cache key [15bd1a57]
+- Fix retry policy for temporary IO exception [15e2723f]
+- Add support for Azure CR [cac5b661]
+- Improve logging [7af3109f]
+
+v0.14.0 - 3 Sep 2022
+- Add support for non x86/amd64 architecture #109 [06c7087b]
+- Add support for custom build and cache repos [68dfc6dd]
+- Allow the build with private repositories [bd3a41b7]
+- Improve container platform handling [d5989cde]
+- Improve validation [49f001b6]
+- Fix history v1 rewrite for multi-layers config [ce799deb]
+- Fix init-container optional if no creds provided (#103) [f64c2636]
+- Remove build pack artifacts (#101) [b4f827f0]
+- Remove unused field [00fb321a]
+- Bump kaniko v1.9.0 [56c4ee63]
+
+v0.13.1 - 23 Aug 2022
+- Improve build mail notification [fcb88794]
+- Rename RouteHelper to RouteHandler [6d5652ee]
+
+v0.13.0 - 17 Aug 2022
+- Use CompletableFuture instead Future to listen progress in the task (#98) [e74194c6]
+- Remove custom base image [c20ce89f]
+- Add unique job id [147cfe6a]
+- Refactor pod build [085397b4]
+
+v0.12.0 - 16 Aug 2022
+- Add support for Kubernetes based image build [3294a334]
+- Add support for creds file [2093d907]
+- Add support for build PV claim [b870b43c]
+- Improve error handling and reporting (#95) [50c0b5f5]
+- Improve logging and debugging [73ff8714]
+- Fix issue resolving cached manifest [5e73892f]
+- Minor changes [9a15e864]
+
+v0.11.1 - 9 Aug 2022
+- Fix build duration format
+
+v0.11.0 - 6 Aug 2022
+- Add config setting for storage cache [e6d3d33d]
+- Improve unit tests for manifest and blob cache [70ba6886]
+- Improve config [9b8e3d46]
+- Add support for mail notification [7e862bc8]
+- Update wave.build.repo config [d3e5ca61]
+- Add support for AWS params store [29e2a89b]
+
+v0.10.3 - 5 Aug 2022
+- Fix missing cache annotation [c56f4d9b]
+
+v0.10.2 - 5 Aug 2022
+- Make container token configurable [03f91737]
+- Increase token expire time. Log missing token requests. (#80) [f734678a]
+- Increase build timeout to 5 mins [7b887614]
+- Bump wave/kaniko:0.1.1 as build image [0275f872]
+- Add support for build cache [829b68f8]
+- Add support for conda file [839eb973]
+- Bump base image 0.1.0 [f39f5449]
+- Minor change [b12aed90]
+
+v0.10.1 -31 Jul 2022
+- Config changes [9373f51c]
+
+v0.10.0 - 27 Jul 2022
+- Add support for container build [8ce16792]
+- feature: allow mysql or h2 via env configuration (#77) [8c2c692a]
+- Use WAVE_ENDPOINT variable as server URL (#75) [61485da7]
+
+v0.9.1 - 3 Jul 2022
+d221290b - Fix launcher main class (5 weeks ago) <Paolo Di Tommaso>
+
+v0.9.0 - 3 Jul 2022
+- Modularise project structure [087e3bbd]
+- Add container injection via external layers [a4a03adb]
+- Refactor package structure [6c9a62a7]
+- Add ability to access private registry using tower creds [47347c9a]
+- Registry authorisation & credentials refactor (#71) [546d73b9]
+
+v0.8.0 - 22 Jun 2022
+- Use geesefs as fuse driver [0a5c61c4]
+- Improve tag & build script [534474b4]
+- Use WAVE_ prefix for env vars [b6326847]
+- Bump Wave project name [0111df4e]
+- Add service info [d681861b]
+- feature: initial documentation (#66) [8b7d0e71]
+
+v0.7.1 - 7 Apr 2022
+- Improve entrypoint [89a7a382]
+
+v0.7.0 - 7 Apr 2022
+
+v0.7.1 - 2022-04-07
+
+v0.7.0 - 2022-04-07
+
+v0.6.14-ISC - 2022-05-28
+
+v0.6.15-juice - 2022-04-16
+
+v0.6.14-juice - 2022-04-16
+
+v0.6.14 - 2022-04-10
+
+v0.6.13 - 2022-04-06
+
+v0.6.10 - 2022-04-06
+
+v0.6.9 - 2022-04-05
+
+v0.6.8 - 2022-04-05
+
+v0.6.7 - 2022-04-04
+
+v0.6.6 - 2022-04-04
+
+v0.6.5 - 2022-04-04
+
+v0.6.4 - 2022-04-03
+
+v0.6.3 - 2022-04-03
+
+v0.6.2 - 2022-04-03
+
+v0.6.1 - 2022-04-03
+
+v0.6.0 - 2022-04-02
+
+v0.5.4 - 2022-03-30
+
+v0.5.3 - 2022-03-29
+
+v0.5.2 - 2022-03-29
+
+v0.5.1 - 2022-03-26
+
+v0.4.8 - 2022-03-16
+
+v0.4.7 - 2022-03-05
+
+v0.4.6 - 2022-03-05
+
+v0.4.5 - 2022-03-04
+
+v0.4.4 - 2022-03-04
+
+v0.4.3 - 2022-03-01
+
+v0.4.2 - 2022-02-27
+
+v0.4.1 - 2022-02-27
+
+v0.4.0 - 2022-02-27
+
+v0.3 - 2022-02-18
+
+v0.2 - 2022-02-12

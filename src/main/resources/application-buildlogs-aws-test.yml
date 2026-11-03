@@ -1,0 +1,8 @@
+---
+wave:
+  build:
+    logs:
+      path: "s3://nextflow-ci/test/l1"
+    locks:
+      path: "s3://nextflow-ci"
+...

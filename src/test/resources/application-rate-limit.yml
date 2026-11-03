@@ -1,0 +1,10 @@
+---
+rate-limit:
+  build:
+    anonymous: 2/1m
+    authenticated: 2/1m
+  pull:
+    anonymous: 2/1m
+    authenticated: 2/1m
+  timeout-errors:
+    maxRate: 2/1m

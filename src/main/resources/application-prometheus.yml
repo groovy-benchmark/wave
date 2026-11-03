@@ -1,0 +1,26 @@
+micronaut:
+  metrics:
+    enabled: true
+    export :
+      prometheus :
+        enabled : true
+        step : PT1M
+        descriptions : true
+    binders:
+      web:
+        server:
+          percentiles: "0.95,0.99"
+        client:
+          percentiles: "0.95,0.99"
+      netty:
+        queues:
+          enabled: true
+        bytebuf-allocators:
+          enabled: true
+        channels:
+          enabled: true
+      jdbc:
+        enabled: true
+endpoints:
+  prometheus:
+    sensitive: false
